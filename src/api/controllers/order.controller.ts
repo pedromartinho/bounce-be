@@ -38,12 +38,12 @@ export default class OrderController {
     // TODO: Consider all the sent fields
     const {cardNumber, amount} = req.body;
 
-    const paymentService = new PaymentService(cardNumber)
+    const paymentService = new PaymentService(cardNumber);
     // TODO: Error handling
-    const paymentId = await paymentService.performPayment(amount)
+    const paymentId = await paymentService.performPayment(amount);
 
     // TODO: Should create order object on the BE side
-    const data = {
+    const data: IOrder = {
       id: randomUUID(),
       paymentId,
     };

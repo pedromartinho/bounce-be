@@ -1,4 +1,4 @@
-import { randomUUID } from "crypto"
+import { randomUUID } from "crypto";
 
 // TODO: Move to own file
 interface IPayment {
@@ -26,7 +26,7 @@ export default class PaymentService {
   public async performPayment(amount: number): Promise<string> {
     const payment = await this.paymentRequest(amount);
 
-    return payment.id
+    return payment.id;
   }
 
   /**
@@ -36,13 +36,13 @@ export default class PaymentService {
   private async paymentRequest(amount: number): Promise<IPayment> {
     await new Promise(resolve => setTimeout(resolve, 2000));
     if (Math.random() < 0.5) {
-      const error = new Error('Could not perform payment') 
+      const error = new Error('Could not perform payment'); 
       throw error;
     }
     return {
       id: randomUUID(),
       amount,
       creditCardNumber: this.cardNumber,
-    }
+    };
   }
 }

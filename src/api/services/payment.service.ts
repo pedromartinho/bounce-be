@@ -35,8 +35,10 @@ export default class PaymentService {
    */
   private async paymentRequest(amount: number): Promise<IPayment> {
     await new Promise(resolve => setTimeout(resolve, 2000));
-    // TODO: Error 50% of the time
-    // Mocked payment object
+    if (Math.random() < 0.5) {
+      const error = new Error('Could not perform payment') 
+      throw error;
+    }
     return {
       id: randomUUID(),
       amount,

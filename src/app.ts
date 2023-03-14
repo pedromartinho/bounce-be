@@ -1,4 +1,3 @@
-import bodyParser from 'body-parser';
 import express from "express";
 import { env } from './configs/env.config';
 import { router } from './api/routes/index';

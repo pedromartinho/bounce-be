@@ -1,13 +1,13 @@
 import { Request, Response, NextFunction } from 'express';
 import BaseError from '../errors/baseError';
 
-export class HandleErrorsMiddleware {
+export default class ErrorHandlerMiddleware {
   /**
    * Error handler to return unexpected errors in a consistent format
    * @returns A middleware function to handle unexpected errors
    */
   // eslint-disable-next-line
-  public static unhandledErrors(err, req: Request, res: Response, _: NextFunction): Response {
+  public static handleErrors(err, req: Request, res: Response, _: NextFunction): Response {
     if (err instanceof BaseError) {
       return res.status(err.statusCode).json({ error: err.message });
     }

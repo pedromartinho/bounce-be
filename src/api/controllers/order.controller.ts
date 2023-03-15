@@ -2,7 +2,7 @@ import { Request, Response, Router } from 'express';
 
 import {orderSchema} from '../schemas/orders.schema';
 import asyncMiddleware from '../middlewares/async.middleware';
-import {ValidatorMiddleware} from '../middlewares/validator.middleware';
+import ValidatorMiddleware from '../middlewares/validator.middleware';
 import PaymentService from '../services/payment.service';
 import BaseError from '../errors/baseError';
 import { faker } from '@faker-js/faker';
@@ -37,12 +37,12 @@ export default class OrderController {
    * @returns {Response} returns an the created order object.
    */
   private static async create(req: Request, res: Response): Promise<Response> {
-    const {cardNumber, amount} = req.body;
+    const {cardNumber, numberOfBags, unitPrice} = req.body;
     let paymentId;
 
     try {
       const paymentService = new PaymentService(cardNumber);
-      paymentId = await paymentService.performPayment(amount);
+      paymentId = await paymentService.performPayment(numberOfBags * unitPrice);
     } catch (error) {
       throw (new BaseError(error.message, 400));
     }

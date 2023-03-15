@@ -8,7 +8,10 @@ export class HandleErrorsMiddleware {
    */
   // eslint-disable-next-line
   public static unhandledErrors(err, req: Request, res: Response, _: NextFunction): Response {
-    return res.status(500).json({ errors: [err.message] });
+    if (err.name === "ValidationError") {
+      return res.status(400).json({ error: [err.message] });
+    }
+    return res.status(500).json({ error: [err.message] });
   }
 
   /**

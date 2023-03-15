@@ -1,13 +1,16 @@
-module.exports = {
-  preset: 'ts-jest',
-  roots: [
-    "./tests"
-  ],
-  coveragePathIgnorePatterns: [
-    "/node_modules/",
-    "/tests/"
-  ],
-  collectCoverage: true,
+import type { Config } from 'jest';
+
+const config: Config = {
   testEnvironment: 'node',
-  setupFiles: ['dotenv/config'],
+  modulePathIgnorePatterns: [
+    'node_modules',
+    'dist',
+  ],
+  testTimeout: 10000,
+  preset: 'ts-jest',
+  setupFilesAfterEnv: [
+    "./src/api/tests/testsSetup.ts"
+  ],
 };
+
+export default config;

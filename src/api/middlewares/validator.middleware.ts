@@ -1,7 +1,7 @@
 import {ObjectSchema} from 'joi';
 import { Request, Response, NextFunction } from 'express';
 
-export class ValidatorMiddleware {
+export default class ValidatorMiddleware {
   /**
    * @summary function for validating properties from body against the provided schema
    * @param schema - Joi schema object for validation

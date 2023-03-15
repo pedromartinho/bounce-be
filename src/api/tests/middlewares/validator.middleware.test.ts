@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ValidatorMiddleware } from '../../middlewares/validator.middleware';
+import ValidatorMiddleware from '../../middlewares/validator.middleware';
 
 describe('test validate method', () => {
   const schema = Joi.object({

@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from 'express';
 import {ObjectSchema} from 'joi';
+import { Request, Response, NextFunction } from 'express';
 
 export class ValidatorMiddleware {
   /**

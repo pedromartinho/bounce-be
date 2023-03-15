@@ -1,6 +1,5 @@
-import { randomUUID } from "crypto";
+import { faker } from "@faker-js/faker";
 
-// TODO: Move to own file
 interface IPayment {
   id: string;
   amount: number;
@@ -14,7 +13,6 @@ export default class PaymentService {
   private cardNumber: string;
 
   constructor(cardNumber: string) {
-    // Consider Card Number as the authentication needed to perform a payment by the user
     this.cardNumber = cardNumber;
   }
 
@@ -39,8 +37,9 @@ export default class PaymentService {
       const error = new Error('Could not perform payment');
       throw error;
     }
+
     return {
-      id: randomUUID(),
+      id: faker.datatype.uuid(),
       amount,
       creditCardNumber: this.cardNumber,
     };

@@ -3,7 +3,9 @@ import { Request, Response, Router } from 'express';
 
 import asyncMiddleware from '../middlewares/async.middleware';
 import PaymentService from '../services/payment.service';
-import { randomUUID } from 'crypto';
+import {randomUUID} from 'crypto';
+import {ValidatorMiddleware} from '../middlewares/validator.middleware';
+import {orderSchema} from '../schemas/orders.schema';
 
 interface IOrder {
   id: string,
@@ -22,7 +24,7 @@ export default class OrderController {
    */
   public static register(): Router {
     this.router.post('/',
-      // TODO: middleware for schema validation
+      ValidatorMiddleware.properties(orderSchema),
       asyncMiddleware(this.create.bind(this))
     );
 
@@ -42,7 +44,6 @@ export default class OrderController {
     // TODO: Error handling
     const paymentId = await paymentService.performPayment(amount);
 
-    // TODO: Should create order object on the BE side
     const data: IOrder = {
       id: randomUUID(),
       paymentId,

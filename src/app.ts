@@ -1,4 +1,5 @@
 import express from "express";
+import cors from 'cors';
 import { env } from './configs/env.config';
 import { router } from './api/routes/index';
 import { HandleErrorsMiddleware } from "./api/middlewares/error-handler.middleware";
@@ -6,6 +7,7 @@ import { HandleErrorsMiddleware } from "./api/middlewares/error-handler.middlewa
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 app.use('/', router);
 app.use(HandleErrorsMiddleware.routeNotFound);
 app.use(HandleErrorsMiddleware.unhandledErrors);

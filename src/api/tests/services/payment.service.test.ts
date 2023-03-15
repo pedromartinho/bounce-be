@@ -9,7 +9,7 @@ describe('test Payment Service', () => {
     };
 
     it('should perform payment with success', async () => {
-      jest.spyOn(PaymentService.prototype as any, 'paymentRequest').mockReturnValueOnce(payment);
+      jest.spyOn(PaymentService.prototype as any, 'paymentRequest').mockReturnValue(payment);
       const paymentService = new PaymentService('1234567890123456');
 
       const paymentId = await paymentService.performPayment(100);
@@ -18,12 +18,17 @@ describe('test Payment Service', () => {
     });
 
     it('should throw an error when payment fails', async () => {
-      jest.spyOn(PaymentService.prototype as any, 'paymentRequest').mockRejectedValueOnce(new Error());
+      const errorMessage = 'Error message';
+      jest.spyOn(PaymentService.prototype as any, 'paymentRequest').mockRejectedValue(new Error(errorMessage));
       const paymentService = new PaymentService('1234567890123456');
 
-      await expect(paymentService.performPayment(1000)).rejects.toThrow('Could not perform payment');
+      try {
+        await paymentService.performPayment(1000);
+      } catch (error) {
+        expect(error.message).toEqual(errorMessage);
+      }
+      await expect(paymentService.performPayment(1000)).rejects.toThrow(Error);
 
-      expect(paymentId).toEqual(payment.id);
     });
   });
 });

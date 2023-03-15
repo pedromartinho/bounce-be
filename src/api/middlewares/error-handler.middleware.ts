@@ -6,6 +6,7 @@ export class HandleErrorsMiddleware {
    *
    * @returns A middleware function to handle unexpected errors
    */
+  // eslint-disable-next-line
   public static unhandledErrors(err, req: Request, res: Response, _: NextFunction): Response {
     return res.status(500).json({ errors: [err.message] });
   }
@@ -15,6 +16,7 @@ export class HandleErrorsMiddleware {
    *
    * @returns A middleware function to handle route not found requests
    */
+  // eslint-disable-next-line
   public static routeNotFound(req: Request, res: Response, next: NextFunction): Response {
     return res.status(404).json({message: 'Endpoint not found'});
   }

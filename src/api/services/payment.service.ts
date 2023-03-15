@@ -36,7 +36,7 @@ export default class PaymentService {
   private async paymentRequest(amount: number): Promise<IPayment> {
     await new Promise(resolve => setTimeout(resolve, 500));
     if (Math.random() < 0.5) {
-      const error = new Error('Could not perform payment'); 
+      const error = new Error('Could not perform payment');
       throw error;
     }
     return {

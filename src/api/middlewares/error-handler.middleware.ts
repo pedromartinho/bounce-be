@@ -3,8 +3,8 @@ import BaseError from '../errors/baseError';
 
 export default class ErrorHandlerMiddleware {
   /**
-   * Error handler to return unexpected errors in a consistent format
-   * @returns A middleware function to handle unexpected errors
+   * Error handler to return errors in a consistent format
+   * @returns A middleware function to handle raised errors on the controller logic
    */
   // eslint-disable-next-line
   public static handleErrors(err, req: Request, res: Response, _: NextFunction): Response {

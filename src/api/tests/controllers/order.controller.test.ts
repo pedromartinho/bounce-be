@@ -19,7 +19,6 @@ describe('OrderController', () => {
 
       const res = await request.post(`/api/orders`).send(validPayload);
       const resultOrder = res.body;
-      console.log(resultOrder);
 
       expect(performPaymentMock).toBeCalledTimes(1);
       expect(performPaymentMock).toBeCalledWith(validPayload.numberOfBags * validPayload.unitPrice);

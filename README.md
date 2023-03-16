@@ -14,25 +14,25 @@ For the BE, I've decided to use Node.js with Typescript. I've been using it in t
 
 ## 🏗️ Initial set-up
 
-First things first, make sure you have Node installed on your machine. If you do, run the following command to set the Node version:
+First things first, make sure you have docker installed on your machine. If you do, run the following command to set the Node version:
 
 ```
-nvm use
+make build
 ```
 
-If you don't have the Node version installed, please install it. Once you've done that, you're ready to get the project up and running! Here are the steps you need to follow:
+Once you've done that, you're ready to get the project up and running! Here's the command you need to run:
 
 ```
-npm i
-npm run start
+make local-run
 ```
 
 After that, you should have the project running http://localhost:3050 🚀
 
-If you want to run the tests, run the command:
+If you want to run the tests or the linter, run the command:
 
 ```
-npm run test
+make test
+make lint
 ```
 
 To test both the endpoints, you can consider the following request:

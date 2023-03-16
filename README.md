@@ -35,6 +35,14 @@ make test
 make lint
 ```
 
+⚠️ **Note:** If you do not want to use docker, you need to have to have the node version 18.15.0 install and then run the following commands:
+
+```
+nvm use
+npm i
+npm run start
+```
+
 To test both the endpoints, you can consider the following request:
 
 ```
